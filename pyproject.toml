@@ -1,0 +1,10 @@
+[project]
+name = "AI_Based_Trip_Planner"
+version = "0.1.0"
+description = """An intelligent trip planning application powered by AI that 
+                helps users create personalized travel itineraries. It generates optimized travel plans by considering user preferences 
+                such as budget, interests, travel dates, and destinations, leveraging AI/LLM capabilities to provide smart 
+                recommendations for accommodations, activities, and routes."""
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
