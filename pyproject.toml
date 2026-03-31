@@ -7,4 +7,5 @@ description = """An intelligent trip planning application powered by AI that
                 recommendations for accommodations, activities, and routes."""
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+]
