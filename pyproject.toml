@@ -8,4 +8,5 @@ description = """An intelligent trip planning application powered by AI that
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    
 ]

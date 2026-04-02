@@ -5,10 +5,11 @@ from prompt_library.prompt import SYSTEM_PROMPT
 
 
 class GraphBuilder:
-    def __init__(self):
+    def __init__(self, model_provider: str = "groq"):
         
         
         
+        self.tools = []
         
         self.system_prompt = SYSTEM_PROMPT
 
