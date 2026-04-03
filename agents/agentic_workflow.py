@@ -2,14 +2,17 @@ from langgraph.graph import StateGraph, MessagesState
 from langgraph.prebuilt import ToolNode, tools_condition
 
 from prompt_library.prompt import SYSTEM_PROMPT
+from utils.model_loader import ModelLoader
 
 
 class GraphBuilder:
     def __init__(self, model_provider: str = "groq"):
-        
-        
+        self.model_loader = ModelLoader(model_provider=model_provider)
+        self.llm = self.model_loader.load_llm()
         
         self.tools = []
+        
+        
         
         self.system_prompt = SYSTEM_PROMPT
 
