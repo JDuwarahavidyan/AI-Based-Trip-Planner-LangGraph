@@ -1,4 +1,4 @@
-from langgraph.graph import StateGraph, MessagesState
+from langgraph.graph import StateGraph, MessagesState, END
 from langgraph.prebuilt import ToolNode, tools_condition
 
 from prompt_library.prompt import SYSTEM_PROMPT
@@ -55,6 +55,9 @@ class GraphBuilder:
             "agent",
             tools_condition
         )   # tool condition will return whether to use tools or not based on that it will go ["tools", END]
+        
+        graph_builder.add_edge("tools","agent")
+        graph_builder.add_edge("agent",END)
     
         graph = graph_builder.compile()
         

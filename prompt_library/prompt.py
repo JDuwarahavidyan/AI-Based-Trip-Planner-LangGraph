@@ -21,6 +21,11 @@ SYSTEM_PROMPT=SystemMessage(
     - Per Day expense budget approximately
     - Weather details
     
+    IMPORTANT
+    - You should mention the currency used when planning the budget (e.g. USD, EUR, INR, etc.)
+    
+    
+    
     Use the available tools to gather information and make detailed cost breakdowns.
     Provide everything in one comprehensive response formatted in clean Markdown.
 

@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 from utils.config_loader import load_config
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 
 _ = load_dotenv()
 
@@ -17,7 +18,7 @@ class ConfigLoader:
         return self.config[key]
 
 class ModelLoader(BaseModel):
-    model_provider: Literal["groq", "openai"] = "groq"
+    model_provider: Literal["groq", "openai", "anthropic"] = "groq"
     config: Optional[ConfigLoader] = Field(default=None, exclude=True)
 
     def model_post_init(self, __context: Any) -> None:
@@ -42,6 +43,11 @@ class ModelLoader(BaseModel):
             openai_api_key = os.getenv("OPENAI_API_KEY")
             model_name = self.config["llm"]["openai"]["model_name"]
             llm = ChatOpenAI(model=model_name, api_key=openai_api_key)
+        elif self.model_provider == "anthropic":
+            print("Loading LLM from Anthropic..............")
+            anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+            model_name = self.config["llm"]["anthropic"]["model_name"]
+            llm = ChatAnthropic(model=model_name, api_key=anthropic_api_key)
         
         return llm
     

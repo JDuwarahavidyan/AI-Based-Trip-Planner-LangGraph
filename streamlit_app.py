@@ -27,15 +27,16 @@ if "messages" not in st.session_state:
 st.header("How can I help you in planning a trip? Let me know where do you want to visit.")
 
 # Chat input box at bottom
-with st.form(key="query_form", clear_on_submit=True):
+with st.form(key="query_form", clear_on_submit=False):
     user_input = st.text_input("User Input", placeholder="e.g. Plan a trip to Goa for 5 days")
+    user_select_model = st.selectbox("Select Model", ["groq", "openai", "anthropic"], key="model_provider")
     submit_button = st.form_submit_button("Send")
 
 if submit_button and user_input.strip():
     try:
         # Show thinking spinner while backend processes
         with st.spinner("Bot is thinking..."):
-            payload = {"question": user_input}
+            payload = {"query": user_input, "model_provider": user_select_model}
             response = requests.post(f"{API_BASE_URL}/query", json=payload)
 
         if response.status_code == 200:
@@ -43,7 +44,7 @@ if submit_button and user_input.strip():
             markdown_content = f"""# 🌍 AI Travel Plan
 
             # **Generated:** {datetime.datetime.now().strftime('%Y-%m-%d at %H:%M')}  
-            # **Created by:** Atriyo's Travel Agent
+            # **Created by:** Duwarahavidyan's Travel Agent
 
             ---
 
